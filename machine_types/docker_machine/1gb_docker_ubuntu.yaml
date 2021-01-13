@@ -1,0 +1,4 @@
+name: "docker_ubuntu"
+box: "hashicorp/bionic64"
+memory: 1024
+public_network: "en0: Wi-Fi (AirPort)"
