@@ -83,7 +83,7 @@ Vagrant.configure("2") do |config|
   # SHELL
 
   config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "provision.yml"
+    ansible.playbook =  machine_values['ansible_provisioning']
     ansible.verbose        = true
   end  
 end
