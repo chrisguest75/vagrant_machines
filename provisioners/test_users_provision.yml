@@ -1,0 +1,25 @@
+# provision.yml
+
+- name: Provision machine
+  hosts: "all"
+  become: true
+  
+  tasks:
+    - name: Ensure group "developers" exists
+      ansible.builtin.group:
+        name: developers
+        state: present
+
+    - name: Add the testuser
+      user:
+        name: testuser1
+        shell: /bin/bash
+        groups: developers        
+        append: yes
+
+    - name: Add the testuser
+      user:
+        name: testuser2
+        shell: /bin/bash
+        groups: developers        
+        append: yes

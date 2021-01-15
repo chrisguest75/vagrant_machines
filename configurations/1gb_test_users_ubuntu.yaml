@@ -8,5 +8,5 @@ ansible_provisioning: [
   "../../provisioners/base_provision.yml",
   "../../provisioners/docker_provision.yml",
   "../../provisioners/zsh_provision.yml",
-  "../../provisioners/testusers_provision.yml"
+  "../../provisioners/test_users_provision.yml"
 ]
