@@ -48,6 +48,12 @@ export VAGRANT_MACHINE_VALUES=../../configurations/1gb_docker_ubuntu.yaml
 
 cd machine_types/docker_machine
 
+# build the machine
 vagrant up --provision
+```
 
+
+## Remove machine
+```sh
+vagrant destroy
 ```
