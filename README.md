@@ -41,6 +41,13 @@ Add the `vscode` extension
 code --install-extension bbenoist.vagrant
 ```
 
+## Jump to build a machine 
+
+```sh
+# for the moment alter this file.
+./jump.sh
+```
+
 ## Build a machine 
 
 ```sh
@@ -58,3 +65,5 @@ vagrant up --provision
 ```sh
 vagrant destroy
 ```
+
+
