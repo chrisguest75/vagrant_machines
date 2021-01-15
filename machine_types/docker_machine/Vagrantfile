@@ -9,9 +9,17 @@
 require 'yaml'
 
 # is it possible to dynamically include the code below?
-ENV["VAGRANT_MACHINE_VALUES"]
-machine_values = YAML.load_file(File.join(File.dirname(__FILE__), '1gb_docker_ubuntu.yaml'))
+$config_path=ENV["VAGRANT_MACHINE_VALUES"]
 
+
+if $config_path.nil? 
+  puts "VAGRANT_MACHINE_VALUES should be set with a path to the values"
+  abort
+else
+  puts "VAGRANT_MACHINE_VALUES=" + $config_path
+end
+
+machine_values = YAML.load_file(File.join(File.dirname(__FILE__), $config_path))
 
 Vagrant.configure("2") do |config|
   # The most common configuration options are documented and commented below.

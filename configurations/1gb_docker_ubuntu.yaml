@@ -1,5 +1,6 @@
+# export VAGRANT_MACHINE_VALUES=../../configurations/1gb_docker_ubuntu.yaml
 name: "docker_ubuntu"
 box: "hashicorp/bionic64"
 memory: 1024
 public_network: "en0: Wi-Fi (AirPort)"
-ansible_provisioning: "provision.yml"
+ansible_provisioning: "../../provisioners/zsh_provision.yml"
