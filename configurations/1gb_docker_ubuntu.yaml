@@ -2,5 +2,6 @@
 name: "docker_ubuntu"
 box: "hashicorp/bionic64"
 memory: 1024
-public_network: "en0: Wi-Fi (AirPort)"
-ansible_provisioning: "../../provisioners/zsh_provision.yml"
+public_network: "wlp3s0"
+#public_network: "en0: Wi-Fi (AirPort)"
+ansible_provisioning: "../../provisioners/docker_provision.yml"

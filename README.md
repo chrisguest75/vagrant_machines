@@ -5,6 +5,7 @@ Based on [vagrant_docker](https://github.com/chrisguest75/vagrant_docker)
 
 TODO:
 * Improve ansible installation
+* Install vmadditions
 * Fix the docker install
 * Custom kernel??
 * Merge my hack the box
@@ -46,7 +47,7 @@ code --install-extension bbenoist.vagrant
 # export the path to the configuration
 export VAGRANT_MACHINE_VALUES=../../configurations/1gb_docker_ubuntu.yaml
 
-cd machine_types/docker_machine
+cd deployment_types/docker_machine
 
 # build the machine
 vagrant up --provision
