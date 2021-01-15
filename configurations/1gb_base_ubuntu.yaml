@@ -5,7 +5,5 @@ memory: 1024
 public_network: "wlp3s0"
 #public_network: "en0: Wi-Fi (AirPort)"
 ansible_provisioning: [
-  "../../provisioners/base_provision.yml",
-  "../../provisioners/docker_provision.yml",
-  "../../provisioners/zsh_provision.yml"
+  "../../provisioners/base_provision.yml"
 ]

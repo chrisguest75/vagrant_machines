@@ -1,0 +1,23 @@
+# provision.yml
+
+- name: Provision machine
+  hosts: "all"
+  become: true
+  
+  tasks:
+    - name: get hostname
+      shell: hostname
+      register: hostname
+
+    - name: apt install basics
+      apt: 
+        pkg:
+          - curl 
+          - git 
+          - nano
+          - bash-completion
+
+    - name: Update all packages to the latest version
+      apt:
+        upgrade: dist
+
