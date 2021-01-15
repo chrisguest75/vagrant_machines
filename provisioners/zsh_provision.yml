@@ -1,0 +1,31 @@
+# provision.yml
+
+- name: Provision machine
+  hosts: "all"
+  become: true
+  
+  pre_tasks:
+    - name: apt install basics
+      apt: 
+        pkg:
+          - zsh
+
+  roles:
+    - role: gantsign.oh-my-zsh
+      users:
+        - username: vagrant
+          oh_my_zsh:
+            theme: robbyrussell
+            plugins:
+              - git        
+
+  tasks:
+    - name: Clone dotfiles
+      git:
+        repo: 'https://github.com/chrisguest75/default_dotfiles.git'
+        dest: /home/vagrant/Code/default_dotfiles
+      become_user: vagrant
+
+    - name: Install dotfiles
+      shell: /home/vagrant/Code/default_dotfiles/install.sh 
+      become_user: vagrant

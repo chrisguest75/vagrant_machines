@@ -1,0 +1,19 @@
+# provision.yml
+
+- name: Provision machine
+  hosts: "all"
+  become: true
+  
+  pre_tasks:
+    - name: Set default Python3
+      shell: update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
+
+  roles:
+    - role: "nickjj.docker"
+      tags: ["docker"]
+      vars:
+        docker__edition: "ce"
+        docker__channel: ["stable"]
+        docker__version: "18.09.3"
+        #docker__version: "18.06.1"
+
