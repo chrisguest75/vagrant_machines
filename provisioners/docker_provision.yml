@@ -4,7 +4,7 @@
   hosts: "all"
   become: true
   
-  tasks:
+  pre_tasks:
     - name: get hostname
       shell: hostname
       register: hostname
@@ -22,15 +22,8 @@
       apt:
         upgrade: dist
 
-    - name: Clone dotfiles
-      git:
-        repo: 'https://github.com/chrisguest75/default_dotfiles.git'
-        dest: /home/vagrant/Code/default_dotfiles
-      become_user: vagrant
-
-    - name: Install dotfiles
-      shell: /home/vagrant/Code/default_dotfiles/install.sh 
-      become_user: vagrant
+    - name: Realias Python
+      shell: update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
 
   roles:
     - role: "nickjj.docker"
@@ -48,3 +41,14 @@
             theme: robbyrussell
             plugins:
               - git        
+
+  tasks:
+    - name: Clone dotfiles
+      git:
+        repo: 'https://github.com/chrisguest75/default_dotfiles.git'
+        dest: /home/vagrant/Code/default_dotfiles
+      become_user: vagrant
+
+    - name: Install dotfiles
+      shell: /home/vagrant/Code/default_dotfiles/install.sh 
+      become_user: vagrant
