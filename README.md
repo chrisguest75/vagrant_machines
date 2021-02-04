@@ -104,8 +104,34 @@ Host default
   LogLevel FATAL
 ```
 
-## Upgrading vmadditions
+## Installing and Upgrading vmadditions/extension pack
+Make sure the additions and extension pack is installed.   
 
+### MacOS Extension Pack on host
+```sh
+# if not showing any output then ensure it is installed using brew
+vboxmanage list extpacks   
+
+# install using brew 
+brew install virtualbox-extension-pack
+```
+
+### Debian/Ubuntu Extension Pack on host
+```sh
+# Not sure why sudo here
+sudo vboxmanage list extpacks   
+
+# on debian/ubuntu
+sudo apt install virtualbox-ext-pack  
+```
+
+### Add additions inside the guest vm
+```sh
+# inside ssh shell
+sudo apt-get install virtualbox-guest-additions-iso 
+```
+
+### Upgrading additions 
 ```sh
 # Uninstall old version
 sudo vbox-uninstall-guest-additions
@@ -121,9 +147,7 @@ sudo mkdir -p /mnt/cdrom
 sudo mount /dev/cdrom /mnt/cdrom
 sudo sh ./VBoxLinuxAdditions.run --nox11
 sudo shutdown -r now
-
 ```
-
 
 ## SSH Tunneling
 NOTE: Work out how to get this working.
@@ -133,7 +157,6 @@ ssh -i ./.vagrant/machines/default/virtualbox/private_key -l vagrant -o StrictHo
 ```
 
 ## Troubleshooting
-
 [Issue with Vagrant 2.2.6 and VirtualBox 6.1](https://github.com/oracle/vagrant-boxes/issues/178)
 
 [Bridged Networking](https://github.com/daftlabs/creed/wiki/Set-up-Vagrant-network-bridge)
@@ -141,31 +164,23 @@ ssh -i ./.vagrant/machines/default/virtualbox/private_key -l vagrant -o StrictHo
 ### Time sync
 Check timesync if you have issues with certificates during software installation.  
 
-```sh
-# on guest vm 
-date
-# hoe far off is clock?
-sudo hwclock -r
-```
-
-Make sure the additions and extension pack is installed.   
-```sh
-# if not showing any output then ensure it is installed using brew
-vboxmanage list extpacks   
-
-# install using brew 
-brew install virtualbox-extension-pack
-```
-
+NOTE: Make sure the additions and extension pack is installed.   
 
 ```sh
-# add additions inside the guest vm
-sudo apt-get install virtualbox-guest-additions-iso 
-
+# on host
 sudo VBoxService --timesync-min-adjust 1000
 sudo VBoxService --timesync-set-threshold 1000
 sudo VBoxService --timesync-interval 60000
+```
 
+```sh
+# on guest vm 
+date
+# how far off is clock?
+sudo hwclock -r
+```
+
+```sh
 sudo apt-get install ntp
 
 sudo hwclock -r
@@ -175,7 +190,7 @@ timedatectl set-ntp true
 timedatectl
 date
 
-# should now work without error
+# should now work without error on guestvm
 sudo apt-get update
 ```
 
