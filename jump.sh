@@ -18,6 +18,13 @@ pushd deployment_types/single_machine
 echo "************************************************"
 echo "Entering $SHELL to run 'vagrant up --provision'"
 echo "VAGRANT_MACHINE_VALUES=$VAGRANT_MACHINE_VALUES"
+echo "To get back 'exit' the shell"
+echo ""
+echo "Setting the machine description to remember which one was installed"
+echo ""
+echo "vboxmanage list vms" 
+echo ""
+echo "vboxmanage modifyvm "\<VM NAME\>" --description \"$VAGRANT_MACHINE_VALUES\"" 
 echo "************************************************"
 $SHELL
 popd

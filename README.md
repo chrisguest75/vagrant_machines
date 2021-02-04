@@ -10,6 +10,8 @@ TODO:
 * Merge my k8s installer
 * Nix test bed
 
+## Thoughts
+Idea is to install one machine per cloned repo.  
 
 ## Installation Instructions 
 Install on `MacOS` 
@@ -188,3 +190,4 @@ ModuleNotFoundError: No module named 'ansible'
 # use pyenv
 pyenv local system
 ```
+
