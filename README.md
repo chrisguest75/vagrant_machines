@@ -9,6 +9,7 @@ TODO:
 * Merge my hack the box
 * Merge my k8s installer
 * Nix test bed
+* Fix that it keeps renaming machine everytime you run ```vagrant up```. 
 
 ## Thoughts
 Idea is to install one machine per cloned repo.  
