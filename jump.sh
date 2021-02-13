@@ -1,8 +1,35 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash 
+#Use !/bin/bash -x  for debugging 
+#set -euf -o pipefail
 set -euf -o pipefail
 
+readonly SCRIPT_NAME=$(basename "$0")
+readonly SCRIPT_PATH=${0}
+# shellcheck disable=SC2034
+readonly SCRIPT_DIR=$(realpath $(dirname "$SCRIPT_PATH"))
+
+if [ -n "${DEBUG_ENVIRONMENT-}" ];then 
+    # if DEBUG_ENVIRONMENT is set
+    env
+    export
+fi
+
+function check_prerequisites() {
+    local dependency=$1
+
+    # check code exists
+    if [[ ! $(command -v "$dependency") ]]; then
+        echo "$dependency is not-installed"
+        exit 0
+    fi
+}
+
+check_prerequisites "whiptail"
+check_prerequisites "vboxmanage"
+check_prerequisites "vagrant"
+
 title="Files"
-curdir=$(readlink -f ./configurations)
+#curdir=$(readlink -f ./configurations)
 curdir=./configurations
 dir_list=$(ls -lhp $curdir | awk -F ' ' ' { print $9 " " $5 } ')
 selection=$(whiptail --title "$title" \
