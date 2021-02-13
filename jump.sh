@@ -27,6 +27,7 @@ function check_prerequisites() {
 check_prerequisites "whiptail"
 check_prerequisites "vboxmanage"
 check_prerequisites "vagrant"
+check_prerequisites "ansible"
 
 title="Files"
 #curdir=$(readlink -f ./configurations)
