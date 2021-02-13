@@ -51,6 +51,19 @@ code --install-extension bbenoist.vagrant
 ```
 
 
+
+## Configure Network
+```sh
+VBoxManage list bridgedifs | grep ^Name
+```
+
+Change configurations with adapter name
+```yml
+public_network: "en0: Wi-Fi (Wireless)"
+# or 
+public_network: "wlp3s0"
+```
+
 ## Build VM
 ```sh
 vagrant up --provider virtualbox --provision
