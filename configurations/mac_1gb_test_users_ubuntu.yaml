@@ -2,9 +2,10 @@
 name: "ubuntu"
 box: "hashicorp/bionic64"
 memory: 1024
-public_network: "wlp3s0"
+public_network: "en0: Wi-Fi (Wireless)"
 ansible_provisioning: [
   "../../provisioners/base_provision.yml",
   "../../provisioners/docker_provision.yml",
-  "../../provisioners/zsh_provision.yml"
+  "../../provisioners/zsh_provision.yml",
+  "../../provisioners/test_users_provision.yml"
 ]

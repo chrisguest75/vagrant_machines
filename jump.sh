@@ -28,6 +28,19 @@ check_prerequisites "whiptail"
 check_prerequisites "vboxmanage"
 check_prerequisites "vagrant"
 check_prerequisites "ansible"
+check_prerequisites "ansible-galaxy"
+
+# check roles exist
+echo "Checking ansible roles; nickjj.docker & gantsign.oh-my-zsh exist"
+ansible-galaxy role list
+if [[ ! $? ]]; then
+    echo "No ansible roles installed"
+else
+    echo "Checking nickjj.docker exists"
+    ansible-galaxy role list | grep "nickjj\.docker"
+    echo "Checking gantsign.oh-my-zsh exists"
+    ansible-galaxy role list | grep "gantsign\.oh-my-zsh"
+fi
 
 title="Files"
 #curdir=$(readlink -f ./configurations)
