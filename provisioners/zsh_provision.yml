@@ -27,5 +27,5 @@
       become_user: vagrant
 
     - name: Install dotfiles
-      shell: /home/vagrant/Code/default_dotfiles/install.sh 
+      shell: /home/vagrant/Code/default_dotfiles/install.sh --unattended
       become_user: vagrant
