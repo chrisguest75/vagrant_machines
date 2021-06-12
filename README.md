@@ -18,6 +18,9 @@ Idea is to install one machine per cloned repo.
 Pull out virtual machine details
 
 ```sh
+# pull out id of installed machine.
+cat .vagrant/machines/default/virtualbox/id
+
 # print out the machine info
 VBoxManage showvminfo --machinereadable --details $(cat .vagrant/machines/default/virtualbox/id)
 
