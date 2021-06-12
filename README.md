@@ -14,6 +14,17 @@ TODO:
 ## Thoughts
 Idea is to install one machine per cloned repo.  
 
+## Useful commands
+Pull out virtual machine details
+
+```sh
+# print out the machine info
+VBoxManage showvminfo --machinereadable --details $(cat .vagrant/machines/default/virtualbox/id)
+
+# extract the ipv4 addresses
+VBoxManage guestproperty enumerate $(cat .vagrant/machines/default/virtualbox/id)   
+```
+
 ## Installation Instructions 
 Install on `MacOS` 
 
