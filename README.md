@@ -5,10 +5,8 @@ Based on [vagrant_docker](https://github.com/chrisguest75/vagrant_docker)
 
 TODO:
 * Install vmadditions
-* Custom kernel??
 * Merge my hack the box
 * Merge my k8s installer
-* Nix test bed
 * Fix that it keeps renaming machine everytime you run ```vagrant up```. 
 
 ## Thoughts
@@ -104,9 +102,14 @@ vagrant resume
 vagrant ssh
 ```
 
-But if you would rather use the ssh tool
+But if you would rather use the ssh client
 ```sh
 ssh -i ./.vagrant/machines/default/virtualbox/private_key -l vagrant -o StrictHostKeyChecking=no -p 2222 127.0.0.1
+
+# with agent forwarding (-A)
+ssh -i ./.vagrant/machines/default/virtualbox/private_key -A -l vagrant -o StrictHostKeyChecking=no -p 2222 127.0.0.1
+# in ssh terminal
+ssh-add -L
 ```
 
 We can also use VSCode to remote-ssh and edit files on the VM
@@ -117,8 +120,8 @@ code --install-extension ms-vscode-remote.remote-ssh
 ```sh
 vagrant ssh-config
 ``` 
-then copy the output to ssh-config
 
+then copy the output to ssh-config
 ```
 Host default
   HostName 127.0.0.1
@@ -184,12 +187,23 @@ If hosting a service on a port tunnel if to host machine.
 ssh -i ./.vagrant/machines/default/virtualbox/private_key -l vagrant -o StrictHostKeyChecking=no -p 2222 -L 8080:127.0.0.1:8080 -N 127.0.0.1 -v
 ```
 
-## Troubleshooting
+## Ubuntu upgrade kernel to HWE
+```sh
+# upgrade to the HWE kernel
+sudo apt-get install --install-recommends linux-generic-hwe-18.04
+# reboot
+sudo reboot
+# versions
+uname -a
+lsb_release -a
+```
+
+# Troubleshooting
 [Issue with Vagrant 2.2.6 and VirtualBox 6.1](https://github.com/oracle/vagrant-boxes/issues/178)
 
 [Bridged Networking](https://github.com/daftlabs/creed/wiki/Set-up-Vagrant-network-bridge)
 
-### Time sync
+## Time sync
 Check timesync if you have issues with certificates during software installation.  
 
 NOTE: Make sure the additions and extension pack is installed.   
@@ -222,7 +236,7 @@ date
 sudo apt-get update
 ```
 
-### Ansible not working
+## Ansible not working
 If you're seeing the following issue then make sure you have set your pyenv back to system for the directory you are building from.  
 ```sh
 Traceback (most recent call last):
