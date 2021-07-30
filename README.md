@@ -200,6 +200,11 @@ sudo reboot
 # versions
 uname -a
 lsb_release -a
+hwe-support-status --verbose
+uname -r 
+# update 
+sudo apt update
+sudo apt list --upgradable                  
 ```
 
 # Troubleshooting
