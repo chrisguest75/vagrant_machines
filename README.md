@@ -118,21 +118,25 @@ code --install-extension ms-vscode-remote.remote-ssh
 ```
 
 ```sh
+# jump into directory and select machine
+./jump.sh 
+# print out config
 vagrant ssh-config
 ``` 
 
-then copy the output to ssh-config
+then copy the output to ssh-config use `Remote-SSH: Open SSH Configuration File`  
 ```
-Host default
+Host vagrantubuntuvm
   HostName 127.0.0.1
   User vagrant
   Port 2222
   UserKnownHostsFile /dev/null
   StrictHostKeyChecking no
   PasswordAuthentication no
-  IdentityFile /Users/user/Code/scratch/vagrant_docker/.vagrant/machines/default/virtualbox/private_key
+  IdentityFile /Users/cguest/Code/scratch/vagrant_machines/deployment_types/single_machine/.vagrant/machines/default/virtualbox/private_key
   IdentitiesOnly yes
   LogLevel FATAL
+  ForwardAgent yes
 ```
 
 ## Installing and Upgrading vmadditions/extension pack
