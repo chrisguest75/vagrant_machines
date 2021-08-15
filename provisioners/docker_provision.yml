@@ -6,7 +6,7 @@
   
   pre_tasks:
     - name: Set default Python3
-      shell: update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
+      shell: update-alternatives --install /usr/bin/python python /usr/bin/python3.9 2
 
   roles:
     - role: "nickjj.docker"
@@ -14,6 +14,6 @@
       vars:
         docker__edition: "ce"
         docker__channel: ["stable"]
-        docker__version: "18.09.3"
+        docker__version: "20.10.8"
         #docker__version: "18.06.1"
 
