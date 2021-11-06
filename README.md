@@ -8,7 +8,7 @@ TODO:
 * Merge my hack the box
 * Merge my k8s installer
 * Fix that it keeps renaming machine everytime you run ```vagrant up```. 
-* Add linuxbrew by default.
+* Add linuxbrew by default. https://github.com/markosamuli/ansible-linuxbrew/tree/master/tasks
 
 ## Thoughts
 Idea is to install one machine per cloned repo.  
