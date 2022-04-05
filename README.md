@@ -1,9 +1,11 @@
 # Vagrant Machines
+
 Attempt to consolidate my vagrant box repos
 
 Based on [vagrant_docker](https://github.com/chrisguest75/vagrant_docker)
 
 TODO:
+
 * Install vmadditions
 * Merge my hack the box
 * Merge my k8s installer
@@ -11,9 +13,11 @@ TODO:
 * Add linuxbrew by default. https://github.com/markosamuli/ansible-linuxbrew/tree/master/tasks
 
 ## Thoughts
+
 Idea is to install one machine per cloned repo.  
 
 ## Useful commands
+
 Pull out virtual machine details
 
 ```sh
@@ -27,7 +31,8 @@ VBoxManage showvminfo --machinereadable --details $(cat .vagrant/machines/defaul
 VBoxManage guestproperty enumerate $(cat .vagrant/machines/default/virtualbox/id)   
 ```
 
-## Installation Instructions 
+## Installation Instructions
+
 Install on `MacOS` 
 
 Tested on vagrant: `2.2.7` & ansible `2.9.2`
@@ -38,12 +43,14 @@ brew cask install vagrant
 ```
 
 Install on `Debian Linux`
+
 ```sh
 apt install ansible
 apt install vagrant
 ```
 
 Install `Vagrant` role dependencies
+
 ```sh
 ansible-galaxy role list
 ansible-galaxy install nickjj.docker
@@ -51,6 +58,7 @@ ansible-galaxy install gantsign.oh-my-zsh
 ```
 
 Add the `vscode` extension
+
 ```sh
 code --install-extension bbenoist.vagrant
 ```
@@ -63,14 +71,14 @@ code --install-extension bbenoist.vagrant
 ./jump.sh
 ```
 
-
-
 ## Configure Network
+
 ```sh
 VBoxManage list bridgedifs | grep ^Name
 ```
 
 Change configurations with adapter name
+
 ```yml
 public_network: "en0: Wi-Fi (Wireless)"
 # or 
@@ -78,11 +86,13 @@ public_network: "wlp3s0"
 ```
 
 ## Build VM
+
 ```sh
 vagrant up --provider virtualbox --provision
 ```
 
 ## Reboot VM
+
 ```sh
 vagrant reload
 
@@ -91,12 +101,15 @@ vagrant halt
 ```
 
 ## Remove VM
+
 ```sh
 vagrant destroy
 ```
 
-## Connect VM 
+## Connect VM
+
 Vagrant supports ssh directly to the box
+
 ```sh
 # if paused
 vagrant resume
@@ -104,6 +117,7 @@ vagrant ssh
 ```
 
 But if you would rather use the ssh client
+
 ```sh
 ssh -i ./.vagrant/machines/default/virtualbox/private_key -l vagrant -o StrictHostKeyChecking=no -p 2222 127.0.0.1
 
@@ -114,6 +128,7 @@ ssh-add -L
 ```
 
 We can also use VSCode to remote-ssh and edit files on the VM
+
 ```sh
 code --install-extension ms-vscode-remote.remote-ssh
 ```
@@ -126,6 +141,7 @@ vagrant ssh-config
 ``` 
 
 then copy the output to ssh-config use `Remote-SSH: Open SSH Configuration File`  
+
 ```
 Host vagrantubuntuvm
   HostName 127.0.0.1
@@ -141,9 +157,11 @@ Host vagrantubuntuvm
 ```
 
 ## Installing and Upgrading vmadditions/extension pack
+
 Make sure the additions and extension pack is installed.   
 
 ### MacOS Extension Pack on host
+
 ```sh
 # if not showing any output then ensure it is installed using brew
 vboxmanage list extpacks   
@@ -153,6 +171,7 @@ brew install virtualbox-extension-pack
 ```
 
 ### Debian/Ubuntu Extension Pack on host
+
 ```sh
 # Not sure why sudo here
 sudo vboxmanage list extpacks   
@@ -162,12 +181,14 @@ sudo apt install virtualbox-ext-pack
 ```
 
 ### Add additions inside the guest vm
+
 ```sh
 # inside ssh shell
 sudo apt-get install virtualbox-guest-additions-iso 
 ```
 
-### Upgrading additions 
+### Upgrading additions
+
 ```sh
 # Uninstall old version
 sudo vbox-uninstall-guest-additions
@@ -186,37 +207,44 @@ sudo shutdown -r now
 ```
 
 ## SSH Tunneling
+
 NOTE: Work out how to get this working.
-If hosting a service on a port tunnel if to host machine. 
+If hosting a service on a port tunnel if to host machine.
+
 ```sh
 ssh -i ./.vagrant/machines/default/virtualbox/private_key -l vagrant -o StrictHostKeyChecking=no -p 2222 -L 8080:127.0.0.1:8080 -N 127.0.0.1 -v
 ```
 
 ## Ubuntu upgrade kernel to HWE
+
 ```sh
 # upgrade to the HWE kernel
-sudo apt-get install --install-recommends linux-generic-hwe-18.04
+
 # reboot
 sudo reboot
+
 # versions
 uname -a
 lsb_release -a
 hwe-support-status --verbose
 uname -r 
+
 # update 
 sudo apt update
 sudo apt list --upgradable                  
 ```
 
-# Troubleshooting
+## Troubleshooting
+
 [Issue with Vagrant 2.2.6 and VirtualBox 6.1](https://github.com/oracle/vagrant-boxes/issues/178)
 
 [Bridged Networking](https://github.com/daftlabs/creed/wiki/Set-up-Vagrant-network-bridge)
 
-## Time sync
+### Time sync
+
 Check timesync if you have issues with certificates during software installation.  
 
-NOTE: Make sure the additions and extension pack is installed.   
+NOTE: Make sure the additions and extension pack is installed.  
 
 ```sh
 # on host
@@ -246,8 +274,10 @@ date
 sudo apt-get update
 ```
 
-## Ansible not working
+### Ansible not working
+
 If you're seeing the following issue then make sure you have set your pyenv back to system for the directory you are building from.  
+
 ```sh
 Traceback (most recent call last):
   File "/bin/ansible", line 34, in <module>
