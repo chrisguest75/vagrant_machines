@@ -6,11 +6,9 @@ Based on [vagrant_docker](https://github.com/chrisguest75/vagrant_docker)
 
 TODO:
 
-* Install vmadditions
 * Merge my hack the box
 * Merge my k8s installer
-* Fix that it keeps renaming machine everytime you run ```vagrant up```. 
-* Add linuxbrew by default. https://github.com/markosamuli/ansible-linuxbrew/tree/master/tasks
+* Add linuxbrew by default. https://github.com/MonolithProjects/ansible-homebrew
 
 ## Thoughts
 
@@ -301,3 +299,4 @@ pyenv local system
 * Role for installing and configuring oh-my-zsh. [here](https://galaxy.ansible.com/gantsign/oh-my-zsh)  
 https://galaxy.ansible.com/community/docker
 https://github.com/nickjj/ansible-docker
+https://galaxy.ansible.com/geerlingguy/homebrew

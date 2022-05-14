@@ -4,10 +4,6 @@
   hosts: "all"
   become: true
   
-  pre_tasks:
-    - name: Set default Python3
-      shell: update-alternatives --install /usr/bin/python python /usr/bin/python3.9 2
-
   roles:
     - role: "nickjj.docker"
       tags: ["docker"]
@@ -15,5 +11,14 @@
         docker__edition: "ce"
         docker__channel: ["stable"]
         docker__version: "20.10.14"
-        #docker__version: "18.06.1"
+
+  post_tasks:
+    - name: apt install compose plugin
+      apt: 
+        pkg:
+          - docker-compose-plugin
+
+    - name: Docker info
+      shell: docker info
+
 

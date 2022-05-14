@@ -31,7 +31,7 @@ check_prerequisites "ansible"
 check_prerequisites "ansible-galaxy"
 
 # check roles exist
-echo "Checking ansible roles; nickjj.docker & gantsign.oh-my-zsh exist"
+echo "Checking ansible roles; nickjj.docker, gantsign.oh-my-zsh exist"
 ansible-galaxy role list
 if [[ ! $? ]]; then
     echo "No ansible roles installed"
