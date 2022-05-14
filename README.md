@@ -33,9 +33,16 @@ VBoxManage guestproperty enumerate $(cat .vagrant/machines/default/virtualbox/id
 
 ## Installation Instructions
 
-Install on `MacOS` 
+Install on `MacOS`  
 
-Tested on vagrant: `2.2.7` & ansible `2.9.2`
+Tested on virtualbox: `6.1.34,150636`, vagrant: `2.2.19` & ansible `5.7.1`  
+
+```sh
+# check versions of packages
+brew info ansible vagrant virtualbox virtualbox-extension-pack
+
+brew upgrade <package>
+```
 
 ```sh
 brew install ansible
@@ -45,16 +52,15 @@ brew cask install vagrant
 Install on `Debian Linux`
 
 ```sh
-apt install ansible
-apt install vagrant
+apt install -y ansible vagrant
 ```
 
 Install `Vagrant` role dependencies
 
 ```sh
 ansible-galaxy role list
-ansible-galaxy install nickjj.docker
-ansible-galaxy install gantsign.oh-my-zsh 
+ansible-galaxy install nickjj.docker --force
+ansible-galaxy install gantsign.oh-my-zsh --force
 ```
 
 Add the `vscode` extension
@@ -158,7 +164,7 @@ Host vagrantubuntuvm
 
 ## Installing and Upgrading vmadditions/extension pack
 
-Make sure the additions and extension pack is installed.   
+Make sure the additions and extension pack is installed.  
 
 ### MacOS Extension Pack on host
 
@@ -288,3 +294,10 @@ ModuleNotFoundError: No module named 'ansible'
 pyenv local system
 ```
 
+## Resources
+
+* Vagrant Cloud Ubuntu [here](https://app.vagrantup.com/ubuntu)  
+* Ubuntu release [here](https://wiki.ubuntu.com/Releases)  
+* Role for installing and configuring oh-my-zsh. [here](https://galaxy.ansible.com/gantsign/oh-my-zsh)  
+https://galaxy.ansible.com/community/docker
+https://github.com/nickjj/ansible-docker

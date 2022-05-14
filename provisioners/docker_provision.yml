@@ -14,6 +14,6 @@
       vars:
         docker__edition: "ce"
         docker__channel: ["stable"]
-        docker__version: "20.10.8"
+        docker__version: "20.10.14"
         #docker__version: "18.06.1"
 

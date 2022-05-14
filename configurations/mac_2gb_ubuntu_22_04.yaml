@@ -1,0 +1,9 @@
+# export VAGRANT_MACHINE_VALUES=../../configurations/1gb_zsh_ubuntu.yaml
+name: "ubuntu"
+box: "ubuntu/jammy64"
+memory: 2048
+public_network: "en0: Wi-Fi (Wireless)"
+ansible_provisioning: [
+  "../../provisioners/base_provision.yml",
+  "../../provisioners/zsh_provision.yml"
+]
