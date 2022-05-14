@@ -9,6 +9,13 @@
       shell: hostname
       register: hostname
 
+    - name: Update and upgrade apt packages
+      become: true
+      apt:
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 86400 #One day
+
     - name: apt install basics
       apt: 
         pkg:
@@ -16,6 +23,7 @@
           - git 
           - nano
           - bash-completion
+          - virtualbox-guest-additions-iso 
 
     - name: Update all packages to the latest version
       apt:

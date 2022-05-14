@@ -6,11 +6,9 @@ Based on [vagrant_docker](https://github.com/chrisguest75/vagrant_docker)
 
 TODO:
 
-* Install vmadditions
 * Merge my hack the box
 * Merge my k8s installer
-* Fix that it keeps renaming machine everytime you run ```vagrant up```. 
-* Add linuxbrew by default. https://github.com/markosamuli/ansible-linuxbrew/tree/master/tasks
+* Add linuxbrew by default. https://github.com/MonolithProjects/ansible-homebrew
 
 ## Thoughts
 
@@ -33,9 +31,16 @@ VBoxManage guestproperty enumerate $(cat .vagrant/machines/default/virtualbox/id
 
 ## Installation Instructions
 
-Install on `MacOS` 
+Install on `MacOS`  
 
-Tested on vagrant: `2.2.7` & ansible `2.9.2`
+Tested on virtualbox: `6.1.34,150636`, vagrant: `2.2.19` & ansible `5.7.1`  
+
+```sh
+# check versions of packages
+brew info ansible vagrant virtualbox virtualbox-extension-pack
+
+brew upgrade <package>
+```
 
 ```sh
 brew install ansible
@@ -45,16 +50,15 @@ brew cask install vagrant
 Install on `Debian Linux`
 
 ```sh
-apt install ansible
-apt install vagrant
+apt install -y ansible vagrant
 ```
 
 Install `Vagrant` role dependencies
 
 ```sh
 ansible-galaxy role list
-ansible-galaxy install nickjj.docker
-ansible-galaxy install gantsign.oh-my-zsh 
+ansible-galaxy install nickjj.docker --force
+ansible-galaxy install gantsign.oh-my-zsh --force
 ```
 
 Add the `vscode` extension
@@ -119,10 +123,10 @@ vagrant ssh
 But if you would rather use the ssh client
 
 ```sh
-ssh -i ./.vagrant/machines/default/virtualbox/private_key -l vagrant -o StrictHostKeyChecking=no -p 2222 127.0.0.1
+ssh -i ./.vagrant/machines/default/virtualbox/private_key -l vagrant -o StrictHostKeyChecking=no -p 2200 127.0.0.1
 
 # with agent forwarding (-A)
-ssh -i ./.vagrant/machines/default/virtualbox/private_key -A -l vagrant -o StrictHostKeyChecking=no -p 2222 127.0.0.1
+ssh -i ./.vagrant/machines/default/virtualbox/private_key -A -l vagrant -o StrictHostKeyChecking=no -p 2200 127.0.0.1
 # in ssh terminal
 ssh-add -L
 ```
@@ -146,7 +150,7 @@ then copy the output to ssh-config use `Remote-SSH: Open SSH Configuration File`
 Host vagrantubuntuvm
   HostName 127.0.0.1
   User vagrant
-  Port 2222
+  Port 2200
   UserKnownHostsFile /dev/null
   StrictHostKeyChecking no
   PasswordAuthentication no
@@ -158,7 +162,7 @@ Host vagrantubuntuvm
 
 ## Installing and Upgrading vmadditions/extension pack
 
-Make sure the additions and extension pack is installed.   
+Make sure the additions and extension pack is installed.  
 
 ### MacOS Extension Pack on host
 
@@ -219,6 +223,7 @@ ssh -i ./.vagrant/machines/default/virtualbox/private_key -l vagrant -o StrictHo
 
 ```sh
 # upgrade to the HWE kernel
+sudo apt-get install --install-recommends linux-generic-hwe-22.04
 
 # reboot
 sudo reboot
@@ -288,3 +293,11 @@ ModuleNotFoundError: No module named 'ansible'
 pyenv local system
 ```
 
+## Resources
+
+* Vagrant Cloud Ubuntu [here](https://app.vagrantup.com/ubuntu)  
+* Ubuntu release [here](https://wiki.ubuntu.com/Releases)  
+* Role for installing and configuring oh-my-zsh. [here](https://galaxy.ansible.com/gantsign/oh-my-zsh)  
+https://galaxy.ansible.com/community/docker
+https://github.com/nickjj/ansible-docker
+https://galaxy.ansible.com/geerlingguy/homebrew
