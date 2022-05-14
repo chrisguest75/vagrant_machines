@@ -123,10 +123,10 @@ vagrant ssh
 But if you would rather use the ssh client
 
 ```sh
-ssh -i ./.vagrant/machines/default/virtualbox/private_key -l vagrant -o StrictHostKeyChecking=no -p 2222 127.0.0.1
+ssh -i ./.vagrant/machines/default/virtualbox/private_key -l vagrant -o StrictHostKeyChecking=no -p 2200 127.0.0.1
 
 # with agent forwarding (-A)
-ssh -i ./.vagrant/machines/default/virtualbox/private_key -A -l vagrant -o StrictHostKeyChecking=no -p 2222 127.0.0.1
+ssh -i ./.vagrant/machines/default/virtualbox/private_key -A -l vagrant -o StrictHostKeyChecking=no -p 2200 127.0.0.1
 # in ssh terminal
 ssh-add -L
 ```
@@ -150,7 +150,7 @@ then copy the output to ssh-config use `Remote-SSH: Open SSH Configuration File`
 Host vagrantubuntuvm
   HostName 127.0.0.1
   User vagrant
-  Port 2222
+  Port 2200
   UserKnownHostsFile /dev/null
   StrictHostKeyChecking no
   PasswordAuthentication no
@@ -223,6 +223,7 @@ ssh -i ./.vagrant/machines/default/virtualbox/private_key -l vagrant -o StrictHo
 
 ```sh
 # upgrade to the HWE kernel
+sudo apt-get install --install-recommends linux-generic-hwe-22.04
 
 # reboot
 sudo reboot
