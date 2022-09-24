@@ -1,8 +1,8 @@
 # Vagrant Machines
 
-Attempt to consolidate my vagrant box repos
+Attempt to consolidate my vagrant box repos  
 
-Based on [vagrant_docker](https://github.com/chrisguest75/vagrant_docker)
+Based on [vagrant_docker](https://github.com/chrisguest75/vagrant_docker)  
 
 TODO:
 
@@ -16,7 +16,7 @@ Idea is to install one machine per cloned repo.
 
 ## Useful commands
 
-Pull out virtual machine details
+Pull out virtual machine details  
 
 ```sh
 # pull out id of installed machine.
@@ -81,7 +81,7 @@ code --install-extension bbenoist.vagrant
 VBoxManage list bridgedifs | grep ^Name
 ```
 
-Change configurations with adapter name
+Change configurations with adapter name  
 
 ```yml
 public_network: "en0: Wi-Fi (Wireless)"
@@ -112,7 +112,7 @@ vagrant destroy
 
 ## Connect VM
 
-Vagrant supports ssh directly to the box
+Vagrant supports ssh directly to the box  
 
 ```sh
 # if paused
@@ -120,7 +120,7 @@ vagrant resume
 vagrant ssh
 ```
 
-But if you would rather use the ssh client
+But if you would rather use the ssh client  
 
 ```sh
 ssh -i ./.vagrant/machines/default/virtualbox/private_key -l vagrant -o StrictHostKeyChecking=no -p 2200 127.0.0.1
@@ -131,7 +131,7 @@ ssh -i ./.vagrant/machines/default/virtualbox/private_key -A -l vagrant -o Stric
 ssh-add -L
 ```
 
-We can also use VSCode to remote-ssh and edit files on the VM
+We can also use VSCode to remote-ssh and edit files on the VM  
 
 ```sh
 code --install-extension ms-vscode-remote.remote-ssh
@@ -142,11 +142,11 @@ code --install-extension ms-vscode-remote.remote-ssh
 ./jump.sh 
 # print out config
 vagrant ssh-config
-``` 
+```
 
 then copy the output to ssh-config use `Remote-SSH: Open SSH Configuration File`  
 
-```
+```config
 Host vagrantubuntuvm
   HostName 127.0.0.1
   User vagrant
@@ -158,6 +158,21 @@ Host vagrantubuntuvm
   IdentitiesOnly yes
   LogLevel FATAL
   ForwardAgent yes
+```
+
+## SSH Tunneling
+
+NOTE: Work out how to get this working.  
+If hosting a service on a port tunnel if to host machine.  
+
+```sh
+ssh -i ./.vagrant/machines/default/virtualbox/private_key -l vagrant -o StrictHostKeyChecking=no -p 2222 -L 8080:127.0.0.1:8080 -N 127.0.0.1 -v
+```
+
+## Copying files
+
+```sh
+scp -i ./.vagrant/machines/default/virtualbox/private_key -o StrictHostKeyChecking=no -P 2200 -r vagrant@127.0.0.1:/home/vagrant/google.pcap ./
 ```
 
 ## Installing and Upgrading vmadditions/extension pack
@@ -210,15 +225,6 @@ sudo sh ./VBoxLinuxAdditions.run --nox11
 sudo shutdown -r now
 ```
 
-## SSH Tunneling
-
-NOTE: Work out how to get this working.
-If hosting a service on a port tunnel if to host machine.
-
-```sh
-ssh -i ./.vagrant/machines/default/virtualbox/private_key -l vagrant -o StrictHostKeyChecking=no -p 2222 -L 8080:127.0.0.1:8080 -N 127.0.0.1 -v
-```
-
 ## Ubuntu upgrade kernel to HWE
 
 ```sh
@@ -241,9 +247,9 @@ sudo apt list --upgradable
 
 ## Troubleshooting
 
-[Issue with Vagrant 2.2.6 and VirtualBox 6.1](https://github.com/oracle/vagrant-boxes/issues/178)
+* [Issue with Vagrant 2.2.6 and VirtualBox 6.1](https://github.com/oracle/vagrant-boxes/issues/178)
 
-[Bridged Networking](https://github.com/daftlabs/creed/wiki/Set-up-Vagrant-network-bridge)
+* [Bridged Networking](https://github.com/daftlabs/creed/wiki/Set-up-Vagrant-network-bridge)
 
 ### Time sync
 
@@ -298,6 +304,6 @@ pyenv local system
 * Vagrant Cloud Ubuntu [here](https://app.vagrantup.com/ubuntu)  
 * Ubuntu release [here](https://wiki.ubuntu.com/Releases)  
 * Role for installing and configuring oh-my-zsh. [here](https://galaxy.ansible.com/gantsign/oh-my-zsh)  
-https://galaxy.ansible.com/community/docker
-https://github.com/nickjj/ansible-docker
-https://galaxy.ansible.com/geerlingguy/homebrew
+* Docker module on ansible galaxy [here](https://galaxy.ansible.com/community/docker)
+* https://github.com/nickjj/ansible-docker
+* https://galaxy.ansible.com/geerlingguy/homebrew
