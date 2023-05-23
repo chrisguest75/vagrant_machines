@@ -1,4 +1,5 @@
 # provision.yml
+# NOTE: This is no longer required as you can use docker provisioner.
 
 - name: Provision machine
   hosts: "all"

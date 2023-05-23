@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "yzhang.markdown-all-in-one",
+        "bbenoist.vagrant",
+        "davidanson.vscode-markdownlint",
+        "ms-vscode-remote.remote-ssh"
+    ]
+}

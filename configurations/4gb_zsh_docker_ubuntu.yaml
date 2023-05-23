@@ -1,9 +1,9 @@
 # export VAGRANT_MACHINE_VALUES=../../configurations/1gb_zsh_ubuntu.yaml
-vagrantid: "default"
+vagrantid: "4gb_zsh_docker_ubuntu"
 name: "ubuntu"
-box: "hashicorp/bionic64"
-memory: 1024
-public_network: "en0: Wi-Fi (Wireless)"
+box: "ubuntu/jammy64"
+memory: 4096
+public_network: "wlp3s0"
 ansible_provisioning: [
   "../../provisioners/base_provision.yml",
   "../../provisioners/zsh_provision.yml"

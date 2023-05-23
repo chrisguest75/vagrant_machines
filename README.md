@@ -9,6 +9,9 @@ TODO:
 * Merge my hack the box
 * Merge my k8s installer
 * Add linuxbrew by default. https://github.com/MonolithProjects/ansible-homebrew
+* Install vmadditions
+* Custom kernel??
+* Nix test bed
 
 ## Thoughts
 
@@ -42,12 +45,7 @@ brew info ansible vagrant virtualbox virtualbox-extension-pack
 brew upgrade <package>
 ```
 
-```sh
-brew install ansible
-brew cask install vagrant
-```
-
-Install on `Debian Linux`
+Install on `Debian Linux`  
 
 ```sh
 apt install -y ansible vagrant
@@ -247,6 +245,8 @@ sudo apt list --upgradable
 
 ## Troubleshooting
 
+[Issue with Vagrant 2.2.6 and VirtualBox 6.1](https://github.com/oracle/vagrant-boxes/issues/178)
+
 * [Issue with Vagrant 2.2.6 and VirtualBox 6.1](https://github.com/oracle/vagrant-boxes/issues/178)
 
 * [Bridged Networking](https://github.com/daftlabs/creed/wiki/Set-up-Vagrant-network-bridge)
@@ -301,9 +301,11 @@ pyenv local system
 
 ## Resources
 
+* Vagrant Documentation [here](https://developer.hashicorp.com/vagrant/docs)  
 * Vagrant Cloud Ubuntu [here](https://app.vagrantup.com/ubuntu)  
 * Ubuntu release [here](https://wiki.ubuntu.com/Releases)  
 * Role for installing and configuring oh-my-zsh. [here](https://galaxy.ansible.com/gantsign/oh-my-zsh)  
 * Docker module on ansible galaxy [here](https://galaxy.ansible.com/community/docker)
 * https://github.com/nickjj/ansible-docker
 * https://galaxy.ansible.com/geerlingguy/homebrew
+* Ubuntu jammy64 box [here](https://app.vagrantup.com/ubuntu/boxes/jammy64)  
