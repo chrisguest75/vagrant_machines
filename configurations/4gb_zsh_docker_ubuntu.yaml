@@ -6,5 +6,6 @@ memory: 4096
 public_network: "wlp3s0"
 ansible_provisioning: [
   "../../provisioners/base_provision.yml",
-  "../../provisioners/zsh_provision.yml"
+  "../../provisioners/zsh_provision.yml",
+  "../../provisioners/brew_provision.yml"
 ]

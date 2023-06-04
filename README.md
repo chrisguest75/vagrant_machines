@@ -8,7 +8,6 @@ TODO:
 
 * Merge my hack the box
 * Merge my k8s installer
-* Add linuxbrew by default. https://github.com/MonolithProjects/ansible-homebrew
 * Install vmadditions
 * Custom kernel??
 * Nix test bed
@@ -47,6 +46,9 @@ brew upgrade <package>
 
 Install on `Debian Linux`  
 
+Tested on virtualbox: `7.0.8 r156879`, vagrant: `2.3.6` & ansible `2.10.8`  
+
+
 ```sh
 apt install -y ansible vagrant
 ```
@@ -57,6 +59,7 @@ Install `Vagrant` role dependencies
 ansible-galaxy role list
 ansible-galaxy install nickjj.docker --force
 ansible-galaxy install gantsign.oh-my-zsh --force
+ansible-galaxy install markosamuli.linuxbrew --force
 ```
 
 Add the `vscode` extension
@@ -309,3 +312,4 @@ pyenv local system
 * https://github.com/nickjj/ansible-docker
 * https://galaxy.ansible.com/geerlingguy/homebrew
 * Ubuntu jammy64 box [here](https://app.vagrantup.com/ubuntu/boxes/jammy64)  
+* https://galaxy.ansible.com/markosamuli/linuxbrew

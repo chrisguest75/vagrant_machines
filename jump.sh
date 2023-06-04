@@ -40,6 +40,8 @@ else
     ansible-galaxy role list | grep "nickjj\.docker"
     echo "Checking gantsign.oh-my-zsh exists"
     ansible-galaxy role list | grep "gantsign\.oh-my-zsh"
+    echo "Checking markosamuli.linuxbrew exists"
+    ansible-galaxy role list | grep "markosamuli\.linuxbrew"
 fi
 
 if [[ -f ./deployment_types/single_machine/selected.txt ]]; then
